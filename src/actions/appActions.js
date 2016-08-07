@@ -23,7 +23,7 @@ export function getCats() {
     return Promise.all([
       dispatch(fetchCatImages()),
       dispatch(fetchCatFacts())
-    ]).then(values => dispatch(ready()));
+    ]).then(() => dispatch(ready()));
   }
 }
 
@@ -83,7 +83,7 @@ function fetchCatImages() {
           if (err) {
             return errorHandler(err);
           }
-          dispatch(receiveCatImages(result.response.data[0].images[0].image))
+          return dispatch(receiveCatImages(result.response.data[0].images[0].image))
         });
       },
       err => dispatch(errorHandler(err))

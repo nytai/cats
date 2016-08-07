@@ -31,7 +31,7 @@ export default function(state= {
         isFetching: false,
       });
     case ERROR:
-      return console.log("error"); // TODO: REMOVE side effect and do something with error.
+      return; // console.log(action.payload); // TODO: REMOVE side effect and do something with error.
     case REMOVE_CAT:
       return Object.assign({}, state, {
         catImages: state.catImages.map((c, id) => {

@@ -13,5 +13,5 @@ export default function configureStore(preloadedState) {
       thunkMiddleware,
       loggerMiddleware
     )
-  )
+  );
 }

@@ -11,13 +11,17 @@ export const Cat = (props) => {
           className='cat-item'>
           <img src={image.url} className="cat-image"/>
           <p className="cat-fact"> {fact} </p>
-          <a className="delete-cat" href="#" onClick={killSelf(id)}> kill </a>
+          <a className="delete-cat" href="#" onClick={killSelf(id)}> Bye </a>
         </li>
       );
   }
 
     return(
-      <ReactCSSTransitionGroup key={id} transitionName="cat" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+      <ReactCSSTransitionGroup
+        key={id}
+        transitionName="cat"
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={500}>
         {item}
       </ReactCSSTransitionGroup>
     );
@@ -48,10 +52,10 @@ export class CatList extends Component {
 
     if (killedAll) {
       return (
-      <div className='cats'>
-        <div className="vertical-padd"> </div>
-        <a className="more-cats" href="#" onClick={getCats}>Gimme More</a>
-      </div>
+        <div className='cats'>
+          <div className="vertical-padd"> </div>
+          <a className="more-cats" href="#" onClick={getCats}>Gimme More</a>
+        </div>
       );
     }
 
@@ -61,7 +65,7 @@ export class CatList extends Component {
           {
             stateContainer.catImages.map( (e, i) => (
               <Cat key={i} killSelf={killCat} id={i} image={e} isHidden={e.isHidden} fact={stateContainer.catFacts[i]} />
-            ))
+            ) )
           }
         </ul>
       </div>
