@@ -6,7 +6,7 @@
   "main": "app/app.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/nytai/cat.git"
+    "url": "git://github.com/nytai/cats.git"
   },
   "scripts": {
     "build": "NODE_ENV=production webpack",

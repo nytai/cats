@@ -8135,7 +8135,7 @@
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Tai/workspace/cat/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Tai/workspace/cat/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
-	"use strict";
+	'use strict';
 
 	__webpack_require__(1);
 
@@ -31020,7 +31020,7 @@
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Tai/workspace/cat/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Tai/workspace/cat/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -31057,28 +31057,32 @@
 	  var item = void 0;
 	  if (!isHidden) {
 	    item = _react2.default.createElement(
-	      "li",
+	      'li',
 	      { key: id,
-	        className: "cat-item" },
-	      _react2.default.createElement("img", { src: image.url, className: "cat-image" }),
+	        className: 'cat-item' },
+	      _react2.default.createElement('img', { src: image.url, className: 'cat-image' }),
 	      _react2.default.createElement(
-	        "p",
-	        { className: "cat-fact" },
-	        " ",
+	        'p',
+	        { className: 'cat-fact' },
+	        ' ',
 	        fact,
-	        " "
+	        ' '
 	      ),
 	      _react2.default.createElement(
-	        "a",
-	        { className: "delete-cat", href: "#", onClick: killSelf(id) },
-	        " kill "
+	        'a',
+	        { className: 'delete-cat', href: '#', onClick: killSelf(id) },
+	        ' Bye '
 	      )
 	    );
 	  }
 
 	  return _react2.default.createElement(
 	    _reactAddonsCssTransitionGroup2.default,
-	    { key: id, transitionName: "cat", transitionEnterTimeout: 500, transitionLeaveTimeout: 500 },
+	    {
+	      key: id,
+	      transitionName: 'cat',
+	      transitionEnterTimeout: 500,
+	      transitionLeaveTimeout: 500 },
 	    item
 	  );
 	};
@@ -31093,14 +31097,14 @@
 	  }
 
 	  _createClass(CatList, [{
-	    key: "componentDidMount",
+	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      var getCats = this.props.getCats;
 
 	      getCats();
 	    }
 	  }, {
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
 	      var _props = this.props;
 	      var stateContainer = _props.stateContainer;
@@ -31120,39 +31124,39 @@
 
 	      if (stateContainer.isFetching) {
 	        return _react2.default.createElement(
-	          "div",
-	          { className: "cats" },
+	          'div',
+	          { className: 'cats' },
 	          _react2.default.createElement(
-	            "p",
-	            { className: "loading" },
-	            " Loading... "
+	            'p',
+	            { className: 'loading' },
+	            ' Loading... '
 	          )
 	        );
 	      }
 
 	      if (killedAll) {
 	        return _react2.default.createElement(
-	          "div",
-	          { className: "cats" },
+	          'div',
+	          { className: 'cats' },
 	          _react2.default.createElement(
-	            "div",
-	            { className: "vertical-padd" },
-	            " "
+	            'div',
+	            { className: 'vertical-padd' },
+	            ' '
 	          ),
 	          _react2.default.createElement(
-	            "a",
-	            { className: "more-cats", href: "#", onClick: getCats },
-	            "Gimme More"
+	            'a',
+	            { className: 'more-cats', href: '#', onClick: getCats },
+	            'Gimme More'
 	          )
 	        );
 	      }
 
 	      return _react2.default.createElement(
-	        "div",
-	        { className: "cats" },
+	        'div',
+	        { className: 'cats' },
 	        _react2.default.createElement(
-	          "ul",
-	          { className: "cat-list" },
+	          'ul',
+	          { className: 'cat-list' },
 	          stateContainer.catImages.map(function (e, i) {
 	            return _react2.default.createElement(Cat, { key: i, killSelf: killCat, id: i, image: e, isHidden: e.isHidden, fact: stateContainer.catFacts[i] });
 	          })
@@ -31289,7 +31293,7 @@
 		styleElementsInsertedAtTop = [];
 
 	module.exports = function(list, options) {
-		if(false) {
+		if(true) {
 			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
 		}
 
@@ -32387,8 +32391,8 @@
 	function getCats() {
 	  return function (dispatch) {
 	    dispatch(requestCats());
-	    return Promise.all([dispatch(fetchCatImages()), dispatch(fetchCatFacts())]).then(function (values) {
-	      return dispatch(ready());
+	    return Promise.all([dispatch(fetchCatImages()), dispatch(fetchCatFacts())]).then(function () {
+	      return dispatch(finishCats());
 	    });
 	  };
 	}
@@ -32399,7 +32403,7 @@
 	  };
 	}
 
-	function ready() {
+	function finishCats() {
 	  return {
 	    type: RECEIVED_CATS
 	  };
@@ -32446,7 +32450,7 @@
 	        if (err) {
 	          return errorHandler(err);
 	        }
-	        dispatch(receiveCatImages(result.response.data[0].images[0].image));
+	        return dispatch(receiveCatImages(result.response.data[0].images[0].image));
 	      });
 	    }, function (err) {
 	      return dispatch(errorHandler(err));
@@ -45298,7 +45302,7 @@
 
 	/* REACT HOT LOADER */ if (false) { (function () { var ReactHotAPI = require("/Users/Tai/workspace/cat/node_modules/react-hot-api/modules/index.js"), RootInstanceProvider = require("/Users/Tai/workspace/cat/node_modules/react-hot-loader/RootInstanceProvider.js"), ReactMount = require("react/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -45323,7 +45327,6 @@
 	      });
 	    case _appActions.RECEIVE_CAT_IMAGES:
 	      return Object.assign({}, state, {
-	        isFetching: false,
 	        catImages: action.payload
 	      });
 	    case _appActions.RECEIVED_CATS:
@@ -45331,7 +45334,7 @@
 	        isFetching: false
 	      });
 	    case _appActions.ERROR:
-	      return console.log("error"); // TODO: REMOVE side effect and do something with error.
+	      return; // console.log(action.payload); // TODO: do something with error.
 	    case _appActions.REMOVE_CAT:
 	      return Object.assign({}, state, {
 	        catImages: state.catImages.map(function (c, id) {

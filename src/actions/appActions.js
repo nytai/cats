@@ -23,7 +23,7 @@ export function getCats() {
     return Promise.all([
       dispatch(fetchCatImages()),
       dispatch(fetchCatFacts())
-    ]).then(() => dispatch(ready()));
+    ]).then(() => dispatch(finishCats()));
   }
 }
 
@@ -33,7 +33,7 @@ function requestCats() {
   }
 }
 
-function ready() {
+function finishCats() {
   return {
     type: RECEIVED_CATS
   }
