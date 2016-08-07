@@ -31052,7 +31052,7 @@
 	  var fact = props.fact;
 	  var image = props.image;
 	  var isHidden = props.isHidden;
-	  var killSelf = props.killSelf;
+	  var byeSelf = props.byeSelf;
 
 	  var item = void 0;
 	  if (!isHidden) {
@@ -31070,7 +31070,7 @@
 	      ),
 	      _react2.default.createElement(
 	        'a',
-	        { className: 'delete-cat', href: '#', onClick: killSelf(id) },
+	        { className: 'delete-cat', href: '#', onClick: byeSelf(id) },
 	        ' Bye '
 	      )
 	    );
@@ -31112,10 +31112,16 @@
 	      var getCats = _props.getCats;
 
 
-	      var killCat = function killCat(id) {
-	        return function (event) {
+	      var byeCat = function byeCat(id) {
+	        return function (e) {
+	          e.preventDefault();
 	          return removeCat(id);
 	        };
+	      };
+
+	      var getMoreCats = function getMoreCats(e) {
+	        e.preventDefault();
+	        return getCats();
 	      };
 
 	      var killedAll = stateContainer.catImages.every(function (e) {
@@ -31145,7 +31151,7 @@
 	          ),
 	          _react2.default.createElement(
 	            'a',
-	            { className: 'more-cats', href: '#', onClick: getCats },
+	            { className: 'more-cats', href: '#', onClick: getMoreCats },
 	            'Gimme More'
 	          )
 	        );
@@ -31158,7 +31164,7 @@
 	          'ul',
 	          { className: 'cat-list' },
 	          stateContainer.catImages.map(function (e, i) {
-	            return _react2.default.createElement(Cat, { key: i, killSelf: killCat, id: i, image: e, isHidden: e.isHidden, fact: stateContainer.catFacts[i] });
+	            return _react2.default.createElement(Cat, { key: i, byeSelf: byeCat, id: i, image: e, isHidden: e.isHidden, fact: stateContainer.catFacts[i] });
 	          })
 	        )
 	      );
