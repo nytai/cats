@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch';
 import { parseString } from 'xml2js'
 
 export const REQUEST_CATS = 'REQUEST_CATS';
