@@ -1,9 +1,10 @@
 import '../styles/main.scss';
 import React, { Component } from 'react';
+
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export const Cat = (props) => {
-  const { id, fact, image, isHidden, killSelf } = props;
+  const { id, fact, image, isHidden, byeSelf } = props;
   let item;
     if(!isHidden) {
       item = (
@@ -11,7 +12,7 @@ export const Cat = (props) => {
           className="cat-item">
           <img src={image.url} className="cat-image"/>
           <p className="cat-fact"> {fact} </p>
-          <a className="delete-cat" href="#" onClick={killSelf(id)}> Bye </a>
+          <a className="delete-cat" href="#" onClick={byeSelf(id)}> Bye </a>
         </li>
       );
   }
@@ -38,7 +39,15 @@ export class CatList extends Component {
   render(){
     const { stateContainer, removeCat, getCats } = this.props;
 
-    const killCat = id => event => removeCat(id);
+    const byeCat = id => e => {
+      e.preventDefault();
+      return removeCat(id);
+    }
+
+    const getMoreCats = e => {
+      e.preventDefault();
+      return getCats();
+    }
 
     const killedAll = stateContainer.catImages.every( (e) => e.isHidden );
 
@@ -54,7 +63,7 @@ export class CatList extends Component {
       return (
         <div className="cats">
           <div className="vertical-padd"> </div>
-          <a className="more-cats" href="#" onClick={getCats}>Gimme More</a>
+          <a className="more-cats" href="#" onClick={getMoreCats}>Gimme More</a>
         </div>
       );
     }
@@ -64,7 +73,7 @@ export class CatList extends Component {
         <ul className="cat-list">
           {
             stateContainer.catImages.map( (e, i) => (
-              <Cat key={i} killSelf={killCat} id={i} image={e} isHidden={e.isHidden} fact={stateContainer.catFacts[i]} />
+              <Cat key={i} byeSelf={byeCat} id={i} image={e} isHidden={e.isHidden} fact={stateContainer.catFacts[i]} />
             ) )
           }
         </ul>
